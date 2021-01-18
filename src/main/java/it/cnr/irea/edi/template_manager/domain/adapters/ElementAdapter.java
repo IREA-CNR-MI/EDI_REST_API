@@ -35,12 +35,12 @@ public class ElementAdapter {
     public boolean isMultiple() {
         return element.isIsMultiple();
     }
-
+    public boolean isRequired() { return element.isIsMandatory(); }
     public List<ItemAdapter> getItems() {
         List<ItemAdapter> results = new ArrayList<ItemAdapter>();
 
         for ( Item child : element.getProduces().getItem()) {
-            results.add(new ItemAdapter(child));
+            results.add(new ItemAdapter(context, this, child));
         }
         return results;
     }

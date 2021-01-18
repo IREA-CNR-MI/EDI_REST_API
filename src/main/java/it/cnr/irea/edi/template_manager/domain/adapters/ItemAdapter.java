@@ -1,5 +1,6 @@
 package it.cnr.irea.edi.template_manager.domain.adapters;
 
+import it.cnr.irea.edi.template_manager.domain.strategies.ItemDocumentor;
 import it.cnr.irea.edi.template_manager.model.template.generated.Item;
 import it.cnr.irea.edi.template_manager.model.template.generated.Label;
 
@@ -9,9 +10,18 @@ import java.util.List;
 
 public class ItemAdapter {
     private Item item;
+    private ItemDocumentor documentor = ItemDocumentor.getItemDocumentor(this);
+    private String context;
+    private ElementAdapter element;
 
-    ItemAdapter(Item item) {
+    ItemAdapter(String context, ElementAdapter elementAdapter, Item item) {
         this.item = item;
+        this.context = context;
+        element = elementAdapter;
+    }
+
+    public String getContext() {
+        return context;
     }
 
     public String getId() {
@@ -38,6 +48,10 @@ public class ItemAdapter {
         return item.getField();
     }
 
+    public ElementAdapter getElement() {
+        return element;
+    }
+
     public boolean isLanguageNeutral() {
         return item.getIsLanguageNeutral() != null && item.getIsLanguageNeutral().equalsIgnoreCase("true");
     }
@@ -52,5 +66,9 @@ public class ItemAdapter {
         return labels;
     }
 
+    public String getDocumentation() {
+        if (documentor != null) return documentor.getDocumentation();
+        return null;
+    }
 
 }
