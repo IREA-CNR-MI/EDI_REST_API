@@ -8,7 +8,6 @@ import it.cnr.irea.edi.template_manager.model.template.generated.EndpointTypes;
 import it.cnr.irea.edi.template_manager.model.template.generated.Settings;
 import it.cnr.irea.edi.template_manager.model.template.generated.Template;
 import it.cnr.irea.edi.template_manager.persistence.TemplateRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.xml.bind.JAXBContext;
