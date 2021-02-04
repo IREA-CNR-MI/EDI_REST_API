@@ -4,27 +4,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "item")
 public class Item {
-    String id;
-    String elementId;
-    String path;
-    String dataType;
-    boolean fixed;
-    boolean useURN;
-    int outIndex;
-    String value;
-    String labelValue;
-    String codeValue;
-    String urnValue;
-    boolean languageNeutral;
-    String listeningFor;
-    boolean isLanguageNeutral;
-    String datasource;
-    String hasIndex;
-    String field;
-    String itemId;
-    boolean show;
-    String defaultValue;
-    String query;
+    private String id;
+    private String elementId;
+    private String path;
+    private String dataType;
+    private boolean fixed;
+    private boolean useURN;
+    private int outIndex;
+    private String value;
+    private String labelValue;
+    private String codeValue;
+    private String urnValue;
+    private boolean languageNeutral;
+    private String listeningFor;
+    private boolean isLanguageNeutral;
+    private String datasource;
+    private String hasIndex;
+    private String field;
+    private String itemId;
+    private boolean show;
+    private String defaultValue;
+    private String query;
+
+    public Item() {
+
+    }
 
     public String getId() {
         return id;

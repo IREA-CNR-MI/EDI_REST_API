@@ -3,15 +3,12 @@ package it.cnr.irea.edi.template_manager;
 import it.cnr.irea.edi.template_manager.domain.EndpointType;
 import it.cnr.irea.edi.template_manager.domain.adapters.ParametersWrapper;
 import it.cnr.irea.edi.template_manager.model.template.generated.Parameter;
-import it.cnr.irea.edi.template_manager.model.template.generated.Parameters;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
 public class EndpointTypeTests {
     @Test
     void queryStringWorks() throws UnsupportedEncodingException {
@@ -37,6 +34,6 @@ public class EndpointTypeTests {
         e.setParameters(para);
         EndpointType endpointType = new EndpointType(e);
         System.out.println(endpointType.getQueryString());
-        assert endpointType.getQueryString().equals("pippo=2&pluto=paperino");
+        assert endpointType.getQueryString().equalsIgnoreCase("pippo=2&pluto=paperino");
     }
 }

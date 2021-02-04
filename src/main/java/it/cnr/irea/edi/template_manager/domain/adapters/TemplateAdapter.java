@@ -94,6 +94,30 @@ public class TemplateAdapter {
         return template;
     }
 
+    public ElementAdapter elementById(String id) {
+        for (GroupAdapter g : getGroups()) {
+            for (ElementAdapter element : g.getElements()) {
+                if (element.getId().equalsIgnoreCase(id)) {
+                    return element;
+                }
+            }
+        }
+        return null;
+    }
+
+    public ItemAdapter itemById(String id) {
+        for (GroupAdapter g : getGroups()) {
+            for (ElementAdapter element : g.getElements()) {
+                for (ItemAdapter item : element.getItems()) {
+                    if (item.getId().equalsIgnoreCase(id)) {
+                        return item;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public void setXmlString() throws JAXBException {
         try {
             // create an instance of `JAXBContext`

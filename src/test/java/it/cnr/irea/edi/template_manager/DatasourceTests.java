@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
 public class DatasourceTests {
     @Test
     public void codelistWorks() throws IOException {
@@ -43,7 +42,7 @@ public class DatasourceTests {
         codelist.setUri("http://inspire-registry.jrc.ec.europa.eu/registers/Languages/items");
         codelist.setEndpointType(endpointType);
         SparqlResult results = codelist.query("");
-        System.out.println("results" + results);
+        System.out.println("results: " + results);
     }
 
     @Test

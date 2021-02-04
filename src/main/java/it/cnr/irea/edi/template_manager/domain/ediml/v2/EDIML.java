@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "elements")
@@ -24,7 +25,7 @@ public class EDIML {
     private String baseDocument;
     private it.cnr.irea.edi.template_manager.model.template.generated.XsltChain xsltChain;
     @XmlElement(name = "element")
-    private List<Element> elements;
+    private List<Element> elements = null;
 
     public EDIML() {
     }
@@ -130,5 +131,21 @@ public class EDIML {
 
     public void setElements(List<Element> elements) {
         this.elements = elements;
+    }
+
+    public Element elementById(String id) {
+        for (Element element : elements) {
+            if (element.getId().equalsIgnoreCase(id)) {
+                return element;
+            }
+        }
+        return null;
+    }
+
+    public void addElement(Element element) {
+        if (elements == null) {
+            elements = new ArrayList<>();
+        }
+        elements.add(element);
     }
 }

@@ -37,6 +37,6 @@ public class EndpointType
             String ascii = p.getName() + "=" + URLEncoder.encode(p.getValue(), "ASCII");
             joiner.add(ascii);
         }
-        return joiner.toString() + "&" + queryParameter + "=";
+        return joiner.toString() + (queryParameter != null ? "&" + queryParameter + "=" : "");
     }
 }

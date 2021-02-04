@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  template-manager:
+    image: registry.adamassoft.it/template_manager
+    ports:
+    - 38088:8080
+    restart: always
+    depends_on:
+      - pg_edi
+  pg_edi:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=edi
+    restart: always
+

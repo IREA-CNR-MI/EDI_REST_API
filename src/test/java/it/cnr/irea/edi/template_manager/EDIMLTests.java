@@ -1,8 +1,12 @@
 package it.cnr.irea.edi.template_manager;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.cnr.irea.edi.template_manager.domain.adapters.ElementAdapter;
+import it.cnr.irea.edi.template_manager.domain.adapters.ItemAdapter;
 import it.cnr.irea.edi.template_manager.domain.adapters.TemplateAdapter;
 import it.cnr.irea.edi.template_manager.domain.ediml.v2.EDIML;
+import it.cnr.irea.edi.template_manager.domain.ediml.v2.Element;
+import it.cnr.irea.edi.template_manager.domain.ediml.v2.Item;
 import it.cnr.irea.edi.template_manager.model.template.generated.Template;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.event.annotation.BeforeTestClass;
@@ -62,6 +66,23 @@ public class EDIMLTests {
 
         TemplateAdapter templateAdapter = new TemplateAdapter(config, template);
         EDIML ediml = new EDIML(templateAdapter);
+        ItemAdapter itemDefinition = templateAdapter.itemById("free_keywords_1");
+        if (itemDefinition != null) {
+            ElementAdapter elementDefinition = templateAdapter.elementById(itemDefinition.getElement().getId());
+            Element element = new Element();
+            element.setId(elementDefinition.getId());
+            element.setRoot(elementDefinition.getRoot());
+            element.setMandatory(elementDefinition.isRequired() ? Element.Requiredness.FOR_ALL : Element.Requiredness.NA);
+            Item item = new Item();
+            item.setId(itemDefinition.getId());
+            item.setElementId(elementDefinition.getId());
+            item.setDatasource(itemDefinition.getDatasource());
+            item.setItemId(itemDefinition.getId());
+            item.setDataType(itemDefinition.getHasDatatype());
+            element.addItem(item);
+            ediml.addElement(element);
+        }
+
 
         JAXBContext contextObj = JAXBContext.newInstance(EDIML.class);
 

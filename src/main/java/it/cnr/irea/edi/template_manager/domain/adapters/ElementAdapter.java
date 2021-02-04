@@ -3,7 +3,9 @@ package it.cnr.irea.edi.template_manager.domain.adapters;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import it.cnr.irea.edi.template_manager.model.template.generated.Element;
+import it.cnr.irea.edi.template_manager.model.template.generated.Help;
 import it.cnr.irea.edi.template_manager.model.template.generated.Item;
+import it.cnr.irea.edi.template_manager.model.template.generated.Label;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,15 @@ public class ElementAdapter {
         return element.isIsMultiple();
     }
     public boolean isRequired() { return element.isIsMandatory(); }
+    public String getRoot() {
+        for (Object object : element.getHelpOrLabelOrHasRoot()) {
+            if (object instanceof Label || (object instanceof Help)) {
+            } else {
+                return (String) object;
+            }
+        }
+        return null;
+    }
     public List<ItemAdapter> getItems() {
         List<ItemAdapter> results = new ArrayList<ItemAdapter>();
 
